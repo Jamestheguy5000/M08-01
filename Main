@@ -1,0 +1,78 @@
+import random
+
+print("You're walking through the dungeon that you have been exploring for a while, when all of a sudden a scary skeleton attacks, Start Combat")
+# Printing flavor for the game to start
+
+HERO_HealthPoint = 20
+Potions = 3
+MONSTERS_Healthpoint = 20
+
+while HERO_HealthPoint >= 0 and MONSTERS_Healthpoint >= 0:
+    Action = float(print("Do you want to Attack (1), Defend(2), or Heal(3)"))
+
+    if Action >= 1:
+        RandomNumber1 = random.randint(1, 20)
+        print("Hero rolled", RandomNumber1)
+
+        RandomNumber2 = random.randint(1, 20)
+        print("Monster rolled", RandomNumber2)
+
+        AttackDamage = random.randint(1, 10)
+
+        if RandomNumber1 > RandomNumber2:
+            print("Hit")
+            MONSTERS_Healthpoint = MONSTERS_Healthpoint - AttackDamage
+            print("You did", AttackDamage, "Damage")
+            print("The Monster has", MONSTERS_Healthpoint, "HP left")
+        elif RandomNumber1 < RandomNumber2:
+            print("Miss")
+            HERO_HealthPoint = HERO_HealthPoint - AttackDamage
+            print("The monster did", AttackDamage, "Damage")
+            print("The Hero has", HERO_HealthPoint, "HP left")
+        else:
+            print("CLASH!")
+
+    elif Action >= 2:
+        RandomNumber1 = random.randint(1, 20)
+        print("Hero rolled", RandomNumber1 + 5)
+
+        RandomNumber2 = random.randint(1, 20)
+        print("Monster rolled", RandomNumber2)
+
+        AttackDamage = random.randint(1, 10)
+
+        if RandomNumber1 > RandomNumber2:
+            print("BLOCK")
+            print("You Successfully Blocked the Monsters Attack")
+        elif RandomNumber1 < RandomNumber2:
+            print("Miss")
+            HERO_HealthPoint = HERO_HealthPoint - AttackDamage
+            print("The monster did", AttackDamage, "Damage")
+            print("The Hero has", HERO_HealthPoint, "HP left")
+        else:
+            print("CLASH!")
+
+    elif Action >= "H" or "h":
+        if Potions <= 3:
+            print("You drink the potion putting yourself back to full health")
+            HERO_HealthPoint = 20
+
+        RandomNumber1 = random.randint(1, 20)
+        print("Hero rolled", RandomNumber1)
+
+        RandomNumber2 = random.randint(1, 20)
+        print("Monster rolled", RandomNumber2)
+
+        if RandomNumber1 > RandomNumber2:
+            print("BLOCK")
+            print("You Successfully Blocked the Monsters Attack")
+        elif RandomNumber1 < RandomNumber2:
+            print("Miss")
+            HERO_HealthPoint = HERO_HealthPoint - AttackDamage
+            print("The monster did", AttackDamage, "Damage")
+            print("The Hero has", HERO_HealthPoint, "HP left")
+        else:
+            print("CLASH!")
+
+    else:
+        print("Error, please Retry")
